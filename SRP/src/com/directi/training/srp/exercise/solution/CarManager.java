@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.directi.training.srp.exercise.Car;
 
-public class CarService
+public class CarManager
 {
 	private CarRepository _repository;
     private CarFormatter _formatter;
@@ -33,3 +33,4 @@ public class CarService
         return _formatter.formatCarNames(cars);
     }
 }
+
