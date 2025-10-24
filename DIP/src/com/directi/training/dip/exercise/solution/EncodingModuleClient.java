@@ -4,17 +4,18 @@ import java.io.IOException;
 
 import com.directi.training.dip.exercise.MyDatabase;
 
-public class EncodingModuleClient {
-    public static void main(String[] args) throws IOException {
-        EncodingModule module = new EncodingModule();
+public class EncodingModuleClient
+{
+    public static void main(String[] args) throws IOException
+    {
+        EncodingModule encodingModule = new EncodingModule();
 
-  
-        InputSource fileSource = new FileInputSource("DIP/src/com/directi/training/dip/exercise/beforeEncryption.txt");
-        OutputTarget fileTarget = new FileOutputTarget("DIP/src/com/directi/training/dip/exercise/afterEncryption.txt");
-        module.encode(fileSource, fileTarget);
 
-        InputSource networkSource = new NetworkInputSource("myfirstappwith.appspot.com", "/index.html");
-        OutputTarget dbTarget = new DatabaseOutputTarget(new MyDatabase());
-        module.encode(networkSource, dbTarget);
+        IWriter fileWriter = new FileWriterImpl("afterEncryption.txt");
+        encodingModule.encodeFile(fileWriter, "beforeEncryption.txt");
+
+        MyDatabase db = new MyDatabase();
+        IWriter dbWriter = new DatabaseWriter(db);
+        encodingModule.encodeFile(dbWriter, "beforeEncryption.txt");
     }
 }

@@ -6,16 +6,18 @@ import com.directi.training.srp.exercise.Car;
 
 public class CarService
 {
-    private final CarRepository _carRepository;
+	private CarRepository _repository;
+    private CarFormatter _formatter;
 
-    public CarService(CarRepository carRepository)
+    public CarService()
     {
-        _carRepository = carRepository;
+        _repository = new CarRepository();
+        _formatter = new CarFormatter();
     }
 
     public Car getBestCar()
     {
-        List<Car> cars = _carRepository.getAllCars();
+        List<Car> cars = _repository.findAll();
         Car bestCar = null;
         for (Car car : cars) {
             if (bestCar == null || car.getModel().compareTo(bestCar.getModel()) > 0) {
@@ -23,5 +25,11 @@ public class CarService
             }
         }
         return bestCar;
+    }
+
+    public String getCarsNames()
+    {
+        List<Car> cars = _repository.findAll();
+        return _formatter.formatCarNames(cars);
     }
 }

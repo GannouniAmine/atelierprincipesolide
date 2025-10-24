@@ -13,7 +13,7 @@ public class CarRepository
         new Car("3", "Megane", "Renault")
     );
 
-    public Car getById(String carId)
+    public Car findById(String carId)
     {
         for (Car car : _carsDb) {
             if (car.getId().equals(carId)) {
@@ -23,7 +23,7 @@ public class CarRepository
         return null;
     }
 
-    public List<Car> getAllCars()
+    public List<Car> findAll()
     {
         return _carsDb;
     }

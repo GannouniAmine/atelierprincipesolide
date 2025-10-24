@@ -2,6 +2,7 @@ package com.directi.training.dip.exercise.solution;
 
 import java.io.IOException;
 
-public interface OutputTarget {
+public interface IWriter
+{
     void write(String data) throws IOException;
 }

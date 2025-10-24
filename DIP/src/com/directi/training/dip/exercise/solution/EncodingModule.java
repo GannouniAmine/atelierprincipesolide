@@ -1,14 +1,18 @@
 package com.directi.training.dip.exercise.solution;
 
-
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
-import java.util.Base64;
 
-public class EncodingModule {
-    public void encode(InputSource source, OutputTarget target) throws IOException {
-        String input = source.read();
-        String encoded = Base64.getEncoder().encodeToString(input.getBytes());
-        target.write(encoded);
+public class EncodingModule
+{
+    public void encodeFile(IWriter writer, String filePath) throws IOException
+    {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                writer.write(line);
+            }
+        }
     }
 }
-

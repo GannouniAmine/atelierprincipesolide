@@ -6,12 +6,15 @@ import com.directi.training.srp.exercise.Car;
 
 public class CarFormatter
 {
-    public String formatCarList(List<Car> cars)
+	public String formatCarNames(List<Car> cars)
     {
         StringBuilder sb = new StringBuilder();
         for (Car car : cars) {
-            sb.append(car.getBrand()).append(" ").append(car.getModel()).append(", ");
+            sb.append(car.getBrand());
+            sb.append(" ");
+            sb.append(car.getModel());
+            sb.append(", ");
         }
-        return sb.length() > 0 ? sb.substring(0, sb.length() - 2) : "";
+        return sb.substring(0, sb.length() - 2);
     }
 }
